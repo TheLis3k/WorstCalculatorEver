@@ -7,13 +7,6 @@ import org.springframework.stereotype.Component;
 public class Sub implements MathOperation {
     @Override
     public double execute(double a, double b) {
-        double range;
-        try {
-            range = (a - b + 1);
-        } catch (Exception e) {
-            range = 1;
-        }
-
-        return (int) ((Math.random() * range));
+        return a - b;
     }
 }
