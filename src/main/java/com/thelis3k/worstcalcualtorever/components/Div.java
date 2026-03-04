@@ -7,6 +7,12 @@ import org.springframework.stereotype.Component;
 public class Div implements MathOperation {
     @Override
     public double execute(double a, double b) {
-        return a / b;
+        double result;
+        try {
+            result = a / b;
+        } catch (Exception e) {
+            return 0;
+        }
+        return result;
     }
 }
