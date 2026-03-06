@@ -18,4 +18,5 @@ public class CalculatorController {
     public double calculate(@RequestParam double a, @RequestParam double b, @PathVariable String operator){
         return calculatorService.calculate(a, b, operator);
     }
+
 }

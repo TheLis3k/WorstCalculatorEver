@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include:
       file: db/changes/001-create-calculations-table.sql
+  - include:
+      file: db/changes/002-add-operation-to-calculations.sql

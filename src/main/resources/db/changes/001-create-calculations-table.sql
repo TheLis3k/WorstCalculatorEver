@@ -7,3 +7,4 @@ CREATE TABLE calculations (
     second_number DOUBLE PRECISION,
     result DOUBLE PRECISION
 );
+-- rollback DROP TABLE calculations;
