@@ -5,6 +5,8 @@ import com.thelis3k.worstcalcualtorever.enums.OperationType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface CalculationRepository extends JpaRepository<Calculation, Long> {
     boolean existsByFirstNumberAndSecondNumberAndOperation(
@@ -14,8 +16,14 @@ public interface CalculationRepository extends JpaRepository<Calculation, Long> 
     );
 
     void deleteByFirstNumberAndSecondNumberAndOperation(
-            Double firstNumber,
-            Double secondNumber,
-            OperationType operation
+        Double firstNumber,
+        Double secondNumber,
+        OperationType operation
+    );
+
+    Optional<Calculation> findFirstByFirstNumberAndSecondNumberAndOperation(
+        Double firstNumber,
+        Double secondNumber,
+        OperationType operation
     );
 }

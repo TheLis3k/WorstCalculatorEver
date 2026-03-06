@@ -17,7 +17,7 @@ public class CalculationHistoryService {
 
     public void saveHistory(double a, double b, OperationType operation, double result){
         Calculation calculation = Calculation.builder()
-                .firstNumber(a)
+                 .firstNumber(a)
                 .secondNumber(b)
                 .operation(operation)
                 .result(result)
@@ -27,7 +27,7 @@ public class CalculationHistoryService {
     }
 
     public List<CalculationDTO> getHistory() {
-      return calculationRepository.findAll()
+        return calculationRepository.findAll()
               .stream()
               .map(calc -> CalculationDTO.builder()
                       .id(calc.getId())
@@ -37,6 +37,20 @@ public class CalculationHistoryService {
                       .result(calc.getResult())
                       .build())
               .toList();
+    }
+
+    public double getResult(double firstNumber, double secondNumber, String operator){
+        OperationType operationType;
+        try {
+            operationType = OperationType.valueOf(operator.toLowerCase());
+        } catch (IllegalArgumentException | NullPointerException e){
+                throw new IllegalArgumentException("What the fuck is: " + operator);
+        }
+
+        return calculationRepository
+                .findFirstByFirstNumberAndSecondNumberAndOperation(firstNumber, secondNumber, operationType)
+                .map(Calculation::getResult)
+                .orElseThrow(() -> new RuntimeException("Not in the database lol"));
     }
 
     public String clearHistory(boolean confirmation){
